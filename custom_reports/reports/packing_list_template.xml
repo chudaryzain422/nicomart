@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_packing_list">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="header" style="border-bottom: 0;">
+                    <div class="row">
+                        <div class="col-6">
+                            <div style="display: flex; align-items: center;">
+                                <div style="background-color: #00A3E0; padding: 10px; border-radius: 10px;">
+                                    <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="max-height: 120px;" alt="Logo"/>
+                                </div>
+                                <div style="margin-left: 20px;">
+                                    <div style="font-size: 24px; color: #00A3E0;">NICOMART</div>
+                                    <div style="font-style: italic; color: #666;">THE WORLD IN YOUR HANDS</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 text-end">
+                            <div style="font-size: 20px; color: #00A3E0;">NICOMART</div>
+                            <div style="color: #666;">DIŞ TICARET LIMITED ŞIRKETI</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article">
+                    <div class="page">
+                        <!-- Title -->
+                        <div class="text-center" style="border: 1px solid black; margin-bottom: 20px;">
+                            <h2 style="margin: 10px;">PACKING LIST</h2>
+                        </div>
+
+                        <!-- Document Details -->
+                        <table class="table table-bordered" style="margin-bottom: 20px;">
+                            <tr>
+                                <td style="width: 50%;"><strong>INVOICE No.</strong></td>
+                                <td><span t-field="doc.origin"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Date</strong></td>
+                                <td><span t-field="doc.scheduled_date" t-options="{'widget': 'date', 'format': 'EEEE, MMMM d, Y'}"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Customer ID</strong></td>
+                                <td><span t-field="doc.partner_id.ref"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>PACKING LIST Number</strong></td>
+                                <td><span t-field="doc.name"/></td>
+                            </tr>
+                        </table>
+
+                        <!-- Shipping Details -->
+                        <table class="table table-bordered" style="margin-bottom: 20px;">
+                            <tr>
+                                <td style="width: 33%;"><strong>POL</strong></td>
+                                <td style="width: 33%;"><span t-field="doc.location_id.name"/></td>
+                                <td style="width: 33%;"><strong>POD</strong></td>
+                                <td><span t-field="doc.location_dest_id.name"/></td>
+                            </tr>
+                        </table>
+
+                        <!-- Exporter Details -->
+                        <table class="table table-bordered" style="margin-bottom: 20px;">
+                            <tr>
+                                <td style="width: 20%;"><strong>EXPORTER/SHIPPER</strong></td>
+                                <td>
+                                    <div><strong>COMPANY NAME: </strong><span t-field="doc.company_id.name"/></div>
+                                    <div><strong>Address: </strong><span t-field="doc.company_id.street"/>, <span t-field="doc.company_id.street2"/></div>
+                                    <div><strong>E-mail: </strong><span t-field="doc.company_id.email"/></div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Consignee Details -->
+                        <table class="table table-bordered" style="margin-bottom: 20px;">
+                            <tr>
+                                <td style="width: 20%;"><strong>CONSIGNEE</strong></td>
+                                <td>
+                                    <div><strong>COMPANY NAME: </strong><span t-field="doc.partner_id.name"/></div>
+                                    <div><strong>ADDRESS: </strong><span t-field="doc.partner_id.street"/></div>
+                                    <div><strong>e-mail: </strong><span t-field="doc.partner_id.email"/></div>
+                                    <div><strong>VAT No: </strong><span t-field="doc.partner_id.vat"/></div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Product Lines -->
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>N</th>
+                                    <th>DESCRIPTION</th>
+                                    <th>CONTAINER NO.</th>
+                                    <th>TOTAL BAGS</th>
+                                    <th>N.W.KG</th>
+                                    <th>G.W.KG</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total_bags" t-value="0"/>
+                                <t t-set="total_net_weight" t-value="0"/>
+                                <t t-set="total_gross_weight" t-value="0"/>
+                                <tr t-foreach="doc.move_ids_without_package" t-as="line">
+                                    <td><span t-esc="line_index + 1"/></td>
+                                    <td><span t-field="line.product_id.name"/></td>
+                                    <td><span t-field="line.picking_id.name"/></td>
+                                    <td class="text-end">
+                                        <span t-field="line.product_uom_qty"/>
+                                        <t t-set="total_bags" t-value="total_bags + line.product_uom_qty"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.product_id.weight"/>
+                                        <t t-set="total_net_weight" t-value="total_net_weight + line.product_id.weight"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.product_id.weight"/>
+                                        <t t-set="total_gross_weight" t-value="total_gross_weight + line.product_id.weight"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Totals -->
+                        <table class="table table-bordered">
+                            <tr>
+                                <td style="width: 20%;"><strong>total PALLET</strong></td>
+                                <td><span t-esc="total_bags"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>total NET weight KG</strong></td>
+                                <td><span t-esc="total_net_weight"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong>TOTAL GROSS WEIGHT</strong></td>
+                                <td><span t-esc="total_gross_weight"/></td>
+                            </tr>
+                        </table>
+
+                        <!-- Signature -->
+                        <div class="row mt-4">
+                            <div class="col-12 text-end">
+                                <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="max-height: 100px;" alt="Logo"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <div class="text-center" style="border-top: 1px solid #dee2e6; padding-top: 10px;">
+                        <div style="color: #00A3E0;">
+                            <span t-field="doc.company_id.street"/>, 
+                            <span t-field="doc.company_id.street2"/>
+                            <span t-field="doc.company_id.city"/>, <span t-field="doc.company_id.country_id.name"/>
+                        </div>
+                        <div style="color: #00A3E0;">
+                            <span>📧 www.nicomart.com</span> | 
+                            <span>✉️ info@nicomart.com</span> |
+                            <span>📞 <span t-field="doc.company_id.phone"/></span>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

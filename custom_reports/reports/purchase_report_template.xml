@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_purchase_order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="header" style="border-bottom: 0;">
+                    <div class="row">
+                        <div class="col-3">
+                            <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="max-height: 120px;" alt="Logo"/>
+                        </div>
+                        <div class="col-5">
+                            <div style="font-size: 24px; color: #00008B;" t-field="doc.company_id.name"/>
+                            <div style="font-style: italic; color: #666;">THE WORLD IN YOUR HANDS</div>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div style="font-size: 20px; color: #00008B; margin-top: 20px;" t-field="doc.company_id.name"/>
+                            <div style="color: #666;">DIŞ TICARET LIMITED ŞIRKETI</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article o_report_layout_standard">
+                    <div class="page">
+                        <h2 class="text-end mb-4" style="color: #00008B;">purchase order</h2>
+
+                        <!-- Contact Information -->
+                        <div class="row mb-4">
+                            <div class="col-8">
+                                <div class="border p-2">
+                                    <strong>BUYER:</strong><br/>
+                                    <span t-field="doc.company_id.name"/><br/>
+                                    <span t-field="doc.company_id.street"/><br/>
+                                    <t t-if="doc.company_id.street2">
+                                        <span t-field="doc.company_id.street2"/><br/>
+                                    </t>
+                                    <span t-field="doc.company_id.city"/><br/>
+                                    <span t-field="doc.company_id.country_id.name"/>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="border p-2">
+                                    <strong>PHONE: </strong>
+                                    <span t-field="doc.company_id.phone"/><br/>
+                                    <strong>EMAIL: </strong>
+                                    <span t-field="doc.company_id.email"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vendor Details -->
+                        <div class="row mb-4">
+                            <div class="col-8">
+                                <div class="border p-2">
+                                    <strong>VENDOR:</strong><br/>
+                                    <span t-field="doc.partner_id.name"/><br/>
+                                    <span t-field="doc.partner_id.street"/><br/>
+                                    <t t-if="doc.partner_id.street2">
+                                        <span t-field="doc.partner_id.street2"/><br/>
+                                    </t>
+                                    <span t-field="doc.partner_id.city"/><br/>
+                                    <span t-field="doc.partner_id.country_id.name"/>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="border p-2">
+                                    <strong>Order Details:</strong><br/>
+                                    <strong>PO No: </strong><span t-field="doc.name"/><br/>
+                                    <strong>Date: </strong><span t-field="doc.date_order" t-options="{'widget': 'date'}"/><br/>
+                                    <strong>Reference: </strong><span t-field="doc.partner_ref"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Information -->
+                        <div class="row mb-4">
+                            <div class="col-4">
+                                <div class="border p-2">
+                                    <strong>SHIPPING METHOD:</strong><br/>
+                                    <span t-field="doc.picking_type_id.name"/>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="border p-2">
+                                    <strong>INCOTERM:</strong><br/>
+                                    <span t-field="doc.incoterm_id.name"/>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="border p-2">
+                                    <strong>DELIVERY DATE:</strong><br/>
+                                    <span t-field="doc.date_planned" t-options="{'widget': 'date'}"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order Lines -->
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>S.#</th>
+                                    <th>PRODUCT DESCRIPTION</th>
+                                    <th>UNIT PACK</th>
+                                    <th>UNIT PRICE</th>
+                                    <th>QTY.</th>
+                                    <th>TOTAL AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="counter" t-value="1"/>
+                                <tr t-foreach="doc.order_line" t-as="line">
+                                    <td><span t-esc="counter"/></td>
+                                    <td><span t-field="line.product_id.name"/></td>
+                                    <td><span t-field="line.product_uom.name"/></td>
+                                    <td class="text-end">
+                                        <span t-field="line.price_unit" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                                    </td>
+                                    <td class="text-end"><span t-field="line.product_qty"/></td>
+                                    <td class="text-end">
+                                        <span t-field="line.price_subtotal" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                                    </td>
+                                    <t t-set="counter" t-value="counter + 1"/>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" class="text-end"><strong>TOTAL VALUE</strong></td>
+                                    <td class="text-end">
+                                        <strong><span t-field="doc.amount_total" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></strong>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- Signature -->
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <div class="border p-2">
+                                    <strong>Terms and Conditions:</strong><br/>
+                                    <span t-field="doc.notes"/>
+                                </div>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mt-5">Authorized Signature &amp; Seal</p>
+                                <div style="min-height: 50px;"></div>
+                                <div t-field="doc.company_id.name"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <div class="text-center" style="border-top: 1px solid #dee2e6; padding-top: 10px;">
+                        <div t-field="doc.company_id.street"/> 
+                        <div t-field="doc.company_id.street2"/>
+                        <div t-field="doc.company_id.city"/>, <span t-field="doc.company_id.country_id.name"/>
+                        <div>
+                            <span>www.nicomart.com</span> | 
+                            <span>info@nicomart.com</span> |
+                            <span t-field="doc.company_id.phone"/>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

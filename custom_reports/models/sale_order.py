@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields,api
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
@@ -11,9 +11,9 @@ class SaleOrder(models.Model):
         string='Country of Origin',
         help='Specify the country of origin for the goods'
     )
-    final_destination = fields.Char(
-        string='Final Destination',
-        help='Specify the final destination of the goods'
+    port_of_loading = fields.Char(
+        string='Port Of Loading',
+        help='Specify the port of Loading'
     )
     port_of_discharge = fields.Char(
         string='Port of Discharge',
@@ -30,3 +30,9 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     hs_code = fields.Char(string="HS CODE",related='product_id.hs_code')
+    image_128 = fields.Image(string="Image",related="product_id.image_128")
+
+    # @api.onchange('product_id')
+    # def onchange_sake_product_image(self):
+    #     for product in self:
+    #         product.image_128 = product.product_id.image_128

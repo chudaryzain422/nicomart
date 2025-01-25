@@ -12,7 +12,7 @@
                             <group>
                                 <field name="pre_carriage"/>
                                 <field name="country_of_origin"/>
-                                <field name="final_destination"/>
+                                <field name="port_of_loading"/>
                             </group>
                             <group>
                                 <field name="port_of_discharge"/>

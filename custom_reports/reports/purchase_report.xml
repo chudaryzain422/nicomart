@@ -4,7 +4,7 @@
         <record id="action_report_purchase_order" model="ir.actions.report">
             <field name="name">Purchase Order</field>
             <field name="model">purchase.order</field>
-            <field name="report_type">qweb-html</field>
+            <field name="report_type">qweb-pdf</field>
             <field name="report_name">custom_reports.report_purchase_order</field>
             <field name="report_file">custom_reports.report_purchase_order</field>
             <field name="print_report_name">'Purchase Order - %s' % object.name</field>

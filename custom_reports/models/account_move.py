@@ -11,9 +11,9 @@ class AccountMove(models.Model):
         string='Country of Origin',
         help='Specify the country of origin for the goods'
     )
-    final_destination = fields.Char(
-        string='Final Destination',
-        help='Specify the final destination of the goods'
+    port_of_loading = fields.Char(
+        string='Port Of Loading',
+        help='Specify the port of Loading'
     )
     port_of_discharge = fields.Char(
         string='Port of Discharge',

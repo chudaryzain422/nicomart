@@ -12,7 +12,7 @@
                             <group>
                                 <field name="pre_carriage"/>
                                 <field name="country_of_origin"/>
-                                <field name="final_destination"/>
+                                <field name="port_of_loading"/>
                             </group>
                             <group>
                                 <field name="port_of_discharge"/>
@@ -24,6 +24,10 @@
                 <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_qty']" position="before">
                         <field name="hs_code"/>
                     </xpath>
+                <xpath expr="//field[@name='order_line']/list/field[@name='name']" position="before" >
+
+                <field name = "image_128" widget="image" class="oe_avatar w-auto float-start"/>
+            </xpath>
             </field>
         </record>
     </data>

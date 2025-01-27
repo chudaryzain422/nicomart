@@ -2,12 +2,12 @@
 <odoo>
     <data>
         <record id="action_report_proforma_invoice" model="ir.actions.report">
-            <field name="name">Custom Quotation</field>
+            <field name="name">Quotation</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">custom_reports.report_proforma_invoice</field>
             <field name="report_file">custom_reports.report_proforma_invoice</field>
-            <field name="print_report_name">'Proforma Invoice - %s' % object.name</field>
+            <field name="print_report_name">'Quotation - %s' % object.name</field>
             <field name="binding_model_id" ref="sale.model_sale_order"/>
             <field name="binding_type">report</field>
         </record>

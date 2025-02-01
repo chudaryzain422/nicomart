@@ -10,6 +10,7 @@
         'views/product_template_form.xml',
         'views/account_move_view.xml',
         'views/purchase_order_form.xml',
+        'views/ResPartnerForm.xml',
         'reports/sale_report.xml',
         'reports/sale_report_template.xml',
         'reports/purchase_report.xml',

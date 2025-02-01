@@ -27,6 +27,7 @@ class PurchaseOrder(models.Model):
         string='Container Quantity',
         help='Specify the quantity of containers'
     )
+    custom_note = fields.Char(string='NOTE')
 
 
 

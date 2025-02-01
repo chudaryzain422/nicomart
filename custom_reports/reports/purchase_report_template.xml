@@ -3,21 +3,6 @@
     <template id="report_purchase_order">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-<!--                <div class="header" style="border-bottom: 0;">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-3">-->
-<!--                            <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="max-height: 120px;" alt="Logo"/>-->
-<!--                        </div>-->
-<!--                        <div class="col-5">-->
-<!--                            <div style="font-size: 24px; color: #00008B;" t-field="doc.company_id.name"/>-->
-<!--                            <div style="font-style: italic; color: #666;">THE WORLD IN YOUR HANDS</div>-->
-<!--                        </div>-->
-<!--                        <div class="col-4 text-end">-->
-<!--                            <div style="font-size: 20px; color: #00008B; margin-top: 20px;" t-field="doc.company_id.name"/>-->
-<!--                            <div style="color: #666;">DIŞ TICARET LIMITED ŞIRKETI</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
                 <div class="article">
                     <!-- Title Box -->
                     <div style="text-align: center;width: 49%;margin-left: 51%;">
@@ -25,17 +10,16 @@
                             Purchase Order
                         </h3>
                     </div>
-
-                    <!-- Contact Info -->
-
                     <!-- Quote Details -->
                     <div class="row" style="margin-bottom: 5px;">
                         <div style="flex: 0 0 auto; width: 50%;">
                             <strong>BUYER / CONSIGNEE:</strong>
                             <div style="border: 1px solid #000;padding: 5px;height: 100%;width: 96%;">
-                                <strong>Company Name:</strong><span t-field="doc.company_id.name"/>
+                                <strong>Company Name:</strong>
+                                <span t-field="doc.company_id.name"/>
                                 <br/>
-                                <strong>Address:</strong><span t-field="doc.company_id.street"/>
+                                <strong>Address:</strong>
+                                <span t-field="doc.company_id.street"/>
                                 <br/>
                                 <span t-field="doc.company_id.city"/>
                                 <br/>
@@ -70,34 +54,14 @@
                                             <span t-field="doc.name"/>
                                         </span>
                                         <br/>
-<!--                                        <span>-->
-<!--                                            <strong>Date:</strong>-->
-<!--                                            <span t-field="doc.date_order" t-options="{'widget': 'date'}"/>-->
-<!--                                        </span>-->
                                     </div>
-<!--                                    <div style="border:1px solid;padding: 5px 20px;">-->
-<!--                                            <strong>Order Details:</strong><br/>-->
-<!--                                    <strong>PO No: </strong><span t-field="doc.name"/><br/>-->
-<!--                                    <strong>Date: </strong><span t-field="doc.date_order" t-options="{'widget': 'date'}"/><br/>-->
-<!--                                    <strong>Reference: </strong><span t-field="doc.partner_ref"/>-->
-<!--                                        <br/>-->
-<!--                                    </div>-->
                                     <div style="border:1px solid;padding: 5px 20px;">
 
-                                         <span>
+                                        <span>
                                             <strong>CONTAINER QTY:</strong>
                                             <br/>
                                             <span t-field="doc.container_qty"/>
                                         </span>
-<!--                                        <span>-->
-<!--                                            <strong>Dated:</strong>-->
-<!--                                            <t t-if="doc.commitment_date">-->
-<!--                                                <t t-set="formatted_date"-->
-<!--                                                   t-value="doc.commitment_date.strftime('%d %B %Y')"/>-->
-<!--                                                <span t-esc="formatted_date"/>-->
-<!--                                                &lt;!&ndash;                                            <span t-field="doc.commitment_date"/>&ndash;&gt;-->
-<!--                                            </t>-->
-<!--                                        </span>-->
                                     </div>
                                     <div style="border:1px solid;padding: 5px 20px;">
                                         <span>
@@ -117,9 +81,11 @@
                             <strong>EXPORTER / SELLER:</strong>
                             <div style="border: 1px solid #000;padding: 5px;height: 100%;width: 96%;">
 
-                                <strong>Company Name:</strong><span t-field="doc.partner_id.name"/>
+                                <strong>Company Name:</strong>
+                                <span t-field="doc.partner_id.name"/>
                                 <br/>
-                               <strong>Address:</strong> <span t-field="doc.partner_id.street"/>
+                                <strong>Address:</strong>
+                                <span t-field="doc.partner_id.street"/>
                                 <br/>
                                 <span t-field="doc.partner_id.street2"/>
                                 <br/>
@@ -144,35 +110,26 @@
                                     <strong>BANK INFORMATION:</strong>
                                 </span>
 
-                                    <div style="border:1px solid;padding: 5px 20px;">
-                                        <span>
-                                              <t t-if="doc.company_id.bank_ids">
-                                                        <strong>Bank:</strong>
-                                                        <span t-field="doc.company_id.bank_ids[0].bank_id.name"/>
-                                                        <br/>
-                                                        <strong>Account number:</strong>
-                                                        <span t-field="doc.company_id.bank_ids[0].acc_number"/>
-                                                        <br/>
-                                                        <strong>IBAN:</strong>
-                                                        <span t-field="doc.company_id.bank_ids[0].acc_number"/>
-                                                        <br/>
-                                                        <strong>Swift code:</strong>
-                                                        <span t-field="doc.company_id.bank_ids[0].bank_id.bic"/>
-                                                        <br/>
-                                                        <strong>Provider name:</strong>
-                                                        <span t-field="doc.company_id.name"/>
-                                                    </t>
-                                        </span>
-<!--                                        <span>-->
-<!--                                            <strong>Dated:</strong>-->
-<!--                                            <t t-if="doc.commitment_date">-->
-<!--                                                <t t-set="formatted_date"-->
-<!--                                                   t-value="doc.commitment_date.strftime('%d %B %Y')"/>-->
-<!--                                                <span t-esc="formatted_date"/>-->
-<!--                                                &lt;!&ndash;                                            <span t-field="doc.commitment_date"/>&ndash;&gt;-->
-<!--                                            </t>-->
-<!--                                        </span>-->
-                                    </div>
+                                <div style="border:1px solid;padding: 5px 20px;">
+                                    <span>
+                                        <t t-if="doc.company_id.bank_ids">
+                                            <strong>Bank:</strong>
+                                            <span t-field="doc.company_id.bank_ids[0].bank_id.name"/>
+                                            <br/>
+                                            <strong>Account number:</strong>
+                                            <span t-field="doc.company_id.bank_ids[0].acc_number"/>
+                                            <br/>
+                                            <strong>IBAN:</strong>
+                                            <span t-field="doc.company_id.bank_ids[0].bank_id.iban"/>
+                                            <br/>
+                                            <strong>Swift code:</strong>
+                                            <span t-field="doc.company_id.bank_ids[0].bank_id.bic"/>
+                                            <br/>
+                                            <strong>Provider name:</strong>
+                                            <span t-field="doc.company_id.name"/>
+                                        </t>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -188,14 +145,16 @@
                                         <span>
                                             <strong>PRE CARRIAGE BY:</strong>
                                             <br/>
-                                            <span t-field="doc.pre_carriage"/>
+                                            <span style="display: block; text-align: center;"
+                                                  t-field="doc.pre_carriage"/>
                                         </span>
                                     </div>
                                     <div style="flex: 0 0 auto;width: 50%;">
                                         <span>
                                             <strong>COUNTRY OF ORIGIN:</strong>
                                             <br/>
-                                            <span t-field="doc.country_of_origin"/>
+                                            <span style="display: block; text-align: center;"
+                                                  t-field="doc.country_of_origin"/>
                                         </span>
                                     </div>
                                 </div>
@@ -210,14 +169,16 @@
                                         <span>
                                             <strong>PORT OF LOADING:</strong>
                                             <br/>
-                                            <span t-field="doc.port_of_loading"/>
+                                            <span style="display: block; text-align: center;"
+                                                  t-field="doc.port_of_loading"/>
                                         </span>
                                     </div>
                                     <div style="flex: 0 0 auto;width: 50%;">
                                         <span>
                                             <strong>PORT OF DISCHARGE:</strong>
                                             <br/>
-                                            <span t-field="doc.port_of_discharge"/>
+                                            <span style="display: block; text-align: center;"
+                                                  t-field="doc.port_of_discharge"/>
                                         </span>
                                     </div>
                                 </div>
@@ -230,7 +191,8 @@
                         <thead>
                             <tr>
                                 <th style="border: 1px solid #000;padding: 5px;text-align: left;">S.#</th>
-                                <th style="border: 1px solid #000;padding: 5px;text-align: left;">PRODUCT DESCRIPTION </th>
+                                <th style="border: 1px solid #000;padding: 5px;text-align: left;">PRODUCT DESCRIPTION
+                                </th>
                                 <th style="border: 1px solid #000;padding: 5px;text-align: left;">IMAGE</th>
                                 <th style="border: 1px solid #000; padding: 5px; text-align: left;">HSCODE</th>
                                 <th style="border: 1px solid #000; padding: 5px; text-align: left;">UNIT</th>
@@ -271,8 +233,6 @@
                                           t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
                                 </td>
                             </tr>
-                        </tbody>
-                        <tfoot>
                             <tr>
                                 <td colspan="6"
                                     style="border: 1px solid #000;padding: 5px;text-align: left;padding-left: 24px;">
@@ -291,88 +251,19 @@
                                     </strong>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="6"
-                                    style="border: 1px solid black;text-align: left;padding: 24px;font-size: 16px;">
-                                    <strong>NOTE:</strong>
-                                    <br/>
-                                    Loading time: 15 working days from order confirmation.
-                                </td>
-
+                            <t t-if="doc.custom_note">
+                                <tr>
+                                    <td colspan="6"
+                                        style="border: 1px solid black;text-align: left;padding: 24px;font-size: 16px;">
+                                        <strong>NOTE:</strong>
+                                        <br/>
+                                        <span t-field="doc.custom_note"/>
+                                    </td>
                                 </tr>
-                        </tfoot>
+                            </t>
+                        </tbody>
                     </table>
-
-                    <!-- Bank Details and Signature -->
-                    <!--                    <div class="row">-->
-                    <!--                        <div style="flex: 0 0 auto; width: 50%;">-->
-                    <!--                            <div style="border: 1px solid #000; padding: 50px;">-->
-                    <!--                                <t t-if="doc.company_id.bank_ids">-->
-                    <!--                                    <strong>Bank:</strong>-->
-                    <!--                                    <span t-field="doc.company_id.bank_ids[0].bank_id.name"/>-->
-                    <!--                                    <br/>-->
-                    <!--                                    <strong>Account number:</strong>-->
-                    <!--                                    <span t-field="doc.company_id.bank_ids[0].acc_number"/>-->
-                    <!--                                    <br/>-->
-                    <!--                                    <strong>IBAN:</strong>-->
-                    <!--                                    <span t-field="doc.company_id.bank_ids[0].acc_number"/>-->
-                    <!--                                    <br/>-->
-                    <!--                                    <strong>Swift code:</strong>-->
-                    <!--                                    <span t-field="doc.company_id.bank_ids[0].bank_id.bic"/>-->
-                    <!--                                    <br/>-->
-                    <!--                                    <strong>Provider name:</strong>-->
-                    <!--                                    <span t-field="doc.company_id.name"/>-->
-                    <!--                                </t>-->
-                    <!--                            </div>-->
-                    <!--                            <div style="border: 1px solid #000; padding: 50px;">-->
-                    <!--                                <strong>WE WILL PROVIDE THE FOLLOWING DOCUMENTS:</strong>-->
-                    <!--                                <ol style="margin: 5px 0 0 20px; padding: 0;">-->
-                    <!--                                    <li>3 SETS OF ORIGINAL INVOICE</li>-->
-                    <!--                                    <li>3 SETS OF PACKING LIST</li>-->
-                    <!--                                    <li>CERTIFICATE OF ORIGIN</li>-->
-                    <!--                                    <li>BILL OF LADING</li>-->
-                    <!--                                </ol>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                        <div style="flex: 0 0 auto; width: 50%;">-->
-                    <!--                            <div style="border: 1px solid #000;">-->
-                    <!--                                <div class="text-center" style="padding: 80px 50px;">-->
-                    <!--                                    <strong>-->
-                    <!--                                        <span t-field="doc.company_id.name"/>-->
-                    <!--                                    </strong>-->
-                    <!--                                    <br/>-->
-                    <!--                                    <span t-field="doc.company_id.street"/>-->
-                    <!--                                    <br/>-->
-                    <!--                                    <span t-field="doc.company_id.street2"/>-->
-                    <!--                                    <br/>-->
-                    <!--                                    <span t-if="doc.company_id.vat">Mersis No:-->
-                    <!--                                        <span t-field="doc.company_id.vat"/>-->
-                    <!--                                    </span>-->
-                    <!--                                </div>-->
-                    <!--                                <div style="padding: 48px;text-align: center;">-->
-                    <!--                                    <br/>-->
-                    <!--                                    <br/>-->
-                    <!--                                    <br/>-->
-                    <!--                                    <br/>-->
-                    <!--                                    <br/>-->
-                    <!--                                    <div>Authorized Signature &amp; Seal</div>-->
-                    <!--                                </div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
                 </div>
-<!--                <div class="footer">-->
-<!--                    <div class="text-center" style="border-top: 1px solid #dee2e6; padding-top: 10px;">-->
-<!--                        <div t-field="doc.company_id.street"/>-->
-<!--                        <div t-field="doc.company_id.street2"/>-->
-<!--                        <div t-field="doc.company_id.city"/>, <span t-field="doc.company_id.country_id.name"/>-->
-<!--                        <div>-->
-<!--                            <span>www.nicomart.com</span> |-->
-<!--                            <span>info@nicomart.com</span> |-->
-<!--                            <span t-field="doc.company_id.phone"/>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
             </t>
         </t>
     </template>

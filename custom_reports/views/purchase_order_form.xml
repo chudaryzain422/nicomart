@@ -20,6 +20,7 @@
                             <group>
                                 <field name="port_of_discharge"/>
                                 <field name="container_qty"/>
+                                <field name="custom_note"/>
                             </group>
                         </group>
                     </page>

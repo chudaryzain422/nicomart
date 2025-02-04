@@ -20,9 +20,11 @@
                             <div style="flex: 0 0 auto; width: 50%;">
                                 <strong>EXPORTER / SELLER:</strong>
                                 <div style="border: 1px solid #000;padding: 5px;height: 100%;width: 96%;">
-                                    <strong>Company Name:</strong><span t-field="doc.company_id.name"/>
+                                    <strong>Company Name:</strong>
+                                    <span t-field="doc.company_id.name"/>
                                     <br/>
-                                   <strong>Address:</strong> <span t-field="doc.company_id.street"/>
+                                    <strong>Address:</strong>
+                                    <span t-field="doc.company_id.street"/>
                                     <br/>
                                     <span t-field="doc.company_id.city"/>
                                     <br/>
@@ -39,10 +41,10 @@
                                         <span style="color: #054da2;" t-field="doc.company_id.email"/>
                                     </span>
                                     <br/>
-                                <span>
-                                    <strong>Vat NO:</strong>
-                                    <span t-field="doc.company_id.vat"/>
-                                </span>
+                                    <span>
+                                        <strong>Vat NO:</strong>
+                                        <span t-field="doc.company_id.vat"/>
+                                    </span>
                                 </div>
                             </div>
                             <div style="flex: 0 0 auto; width: 50%;">
@@ -58,7 +60,7 @@
                                             </span>
                                             <br/>
                                             <span>
-                                                <strong>Date:</strong>
+                                                <strong>Invoice Date:</strong>
                                                 <span t-field="doc.invoice_date"/>
                                             </span>
                                         </div>
@@ -88,9 +90,11 @@
                                 <strong>BUYER / CONSIGNEE:</strong>
                                 <div style="border: 1px solid #000;padding:5px 20px;height: 100%;width: 96%;">
 
-                                    <strong>Company Name:</strong> <span t-field="doc.partner_id.name"/>
+                                    <strong>Company Name:</strong>
+                                    <span t-field="doc.partner_id.name"/>
                                     <br/>
-                                    <strong>Address:</strong> <span t-field="doc.partner_id.street"/>
+                                    <strong>Address:</strong>
+                                    <span t-field="doc.partner_id.street"/>
                                     <br/>
                                     <span t-field="doc.partner_id.street2"/>
                                     <br/>
@@ -116,23 +120,23 @@
                                     </span>
                                     <div style="width: 100%;margin-bottom: 5px;">
                                         <div style="border: 1px solid #000;padding:5px 20px;">
-                                                            <t t-if="doc.company_id.bank_ids">
-                                                                <strong>Bank:</strong>
-                                                                <span t-field="doc.company_id.bank_ids[0].bank_id.name"/>
-                                                                <br/>
-                                                                <strong>Account number:</strong>
-                                                                <span t-field="doc.company_id.bank_ids[0].acc_number"/>
-                                                                <br/>
-                                                                <strong>IBAN:</strong>
-                                                                <span t-field="doc.company_id.bank_ids[0].bank_id.iban"/>
-                                                                <br/>
-                                                                <strong>Swift code:</strong>
-                                                                <span t-field="doc.company_id.bank_ids[0].bank_id.bic"/>
-                                                                <br/>
-                                                                <strong>Provider name:</strong>
-                                                                <span t-field="doc.company_id.name"/>
-                                                            </t>
-                                                </div>
+                                            <t t-if="doc.company_id.bank_ids">
+                                                <strong>Bank:</strong>
+                                                <span t-field="doc.company_id.bank_ids[0].bank_id.name"/>
+                                                <br/>
+                                                <strong>Account number:</strong>
+                                                <span t-field="doc.company_id.bank_ids[0].acc_number"/>
+                                                <br/>
+                                                <strong>IBAN:</strong>
+                                                <span t-field="doc.company_id.bank_ids[0].bank_id.iban"/>
+                                                <br/>
+                                                <strong>Swift code:</strong>
+                                                <span t-field="doc.company_id.bank_ids[0].bank_id.bic"/>
+                                                <br/>
+                                                <strong>Provider name:</strong>
+                                                <span t-field="doc.company_id.name"/>
+                                            </t>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -140,52 +144,56 @@
 
 
                         <!-- Shipping Details -->
-                    <div class="row" style="margin-bottom: 5px;">
-                        <div style="flex: 0 0 auto; width: 50%;">
-                            <strong>SHIPPING DETAILS:</strong>
-                            <div style="border: 1px solid #000;width: 96%;">
-                                <div class="row">
-                                    <br/>
-                                    <div style="flex: 0 0 auto;width: 50%;border-right: 1px solid;">
-                                        <span>
-                                            <strong>PRE CARRIAGE BY:</strong>
-                                            <br/>
-                                            <span style="display: block; text-align: center;" t-field="doc.pre_carriage"/>
-                                        </span>
+                        <div class="row" style="margin-bottom: 5px;">
+                            <div style="flex: 0 0 auto; width: 50%;">
+                                <strong>SHIPPING DETAILS:</strong>
+                                <div style="border: 1px solid #000;width: 96%;">
+                                    <div class="row">
+                                        <br/>
+                                        <div style="flex: 0 0 auto;width: 50%;border-right: 1px solid;">
+                                            <span>
+                                                <strong>PRE CARRIAGE BY:</strong>
+                                                <br/>
+                                                <span style="display: block; text-align: center;"
+                                                      t-field="doc.pre_carriage"/>
+                                            </span>
+                                        </div>
+                                        <div style="flex: 0 0 auto;width: 50%;">
+                                            <span>
+                                                <strong>COUNTRY OF ORIGIN:</strong>
+                                                <br/>
+                                                <span style="display: block; text-align: center;"
+                                                      t-field="doc.country_of_origin"/>
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div style="flex: 0 0 auto;width: 50%;">
-                                        <span>
-                                            <strong>COUNTRY OF ORIGIN:</strong>
-                                            <br/>
-                                            <span style="display: block; text-align: center;" t-field="doc.country_of_origin"/>
-                                        </span>
+                                </div>
+                            </div>
+                            <div style="flex: 0 0 auto; width: 50%;">
+                                <strong>DELIVERY DETAILS:</strong>
+                                <div style="border: 1px solid #000;width: 96%;">
+                                    <div class="row">
+                                        <br/>
+                                        <div style="flex: 0 0 auto;width: 50%;border-right: 1px solid;">
+                                            <span>
+                                                <strong>PORT OF LOADING:</strong>
+                                                <br/>
+                                                <span style="display: block; text-align: center;"
+                                                      t-field="doc.port_of_loading"/>
+                                            </span>
+                                        </div>
+                                        <div style="flex: 0 0 auto;width: 50%;">
+                                            <span>
+                                                <strong>PORT OF DISCHARGE:</strong>
+                                                <br/>
+                                                <span style="display: block; text-align: center;"
+                                                      t-field="doc.port_of_discharge"/>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div style="flex: 0 0 auto; width: 50%;">
-                            <strong>DELIVERY DETAILS:</strong>
-                            <div style="border: 1px solid #000;width: 96%;">
-                                <div class="row">
-                                    <br/>
-                                    <div style="flex: 0 0 auto;width: 50%;border-right: 1px solid;">
-                                        <span>
-                                            <strong>PORT OF LOADING:</strong>
-                                            <br/>
-                                            <span style="display: block; text-align: center;" t-field="doc.port_of_loading"/>
-                                        </span>
-                                    </div>
-                                    <div style="flex: 0 0 auto;width: 50%;">
-                                        <span>
-                                            <strong>PORT OF DISCHARGE:</strong>
-                                            <br/>
-                                            <span style="display: block; text-align: center;" t-field="doc.port_of_discharge"/>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                         <!--                        <div style="page-break-before:always;"></div>-->
                         <!-- Product Table -->
                         <div style="page-break-before: auto;">
@@ -209,32 +217,43 @@
                                 </thead>
                                 <tbody>
                                     <tr t-foreach="doc.invoice_line_ids" t-as="line">
-                                        <td style="border: 1px solid #000; padding: 5px; text-align: center;">
-                                            <span t-esc="line_index + 1"/>
-                                        </td>
-                                        <td style="border: 1px solid #000; padding: 5px;">
-                                            <span t-field="line.product_id.name"/>
-                                        </td>
-                                        <td style="border: 1px solid #000; padding: 5px;">
-                                            <t t-if="line.product_id.hs_code">
-                                                <span t-field="line.product_id.hs_code"/>
-                                            </t>
-                                        </td>
-                                        <td style="border: 1px solid #000; padding: 5px; text-align: center;">
-                                            <span t-field="line.product_uom_id.name"/>
-                                        </td>
-                                        <td style="border: 1px solid #000; padding: 5px; text-align: right;">
-                                            <span t-field="line.price_unit"
-                                                  t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
-                                        </td>
-                                        <td style="border: 1px solid #000; padding: 5px; text-align: right;">
-                                            <span t-field="line.quantity"/>
-                                        </td>
-                                        <td style="border: 1px solid #000; padding: 5px; text-align: right;">
-                                            <span t-field="line.price_subtotal"
-                                                  t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
-                                        </td>
+                                        <t t-if="line.display_type == 'line_section'">
+                                            <tr>
+                                                <td colspan="7"
+                                                    style="border: 1px solid #000; padding: 5px; text-align: left; font-weight: bold;">
+                                                    <span t-field="line.name"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <t t-else="">
+                                            <td style="border: 1px solid #000; padding: 5px; text-align: center;">
+                                                <span t-esc="line_index + 1"/>
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 5px;">
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 5px;">
+                                                <t t-if="line.product_id.hs_code">
+                                                    <span t-field="line.product_id.hs_code"/>
+                                                </t>
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 5px; text-align: center;">
+                                                <span t-field="line.product_uom_id.name"/>
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 5px; text-align: right;">
+                                                <span t-field="line.price_unit"
+                                                      t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 5px; text-align: right;">
+                                                <span t-field="line.quantity"/>
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 5px; text-align: right;">
+                                                <span t-field="line.price_subtotal"
+                                                      t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                            </td>
+                                        </t>
                                     </tr>
+
                                     <tr>
                                         <td colspan="5"
                                             style="border: 1px solid #000;padding: 5px;text-align: left;padding-left: 10px;">
@@ -281,15 +300,15 @@
                                         </td>
                                     </tr>
                                     <t t-if="doc.custom_note">
-                                <tr>
-                                    <td colspan="5"
-                                        style="border: 1px solid black;text-align: left;padding: 24px;font-size: 16px;">
-                                        <strong>NOTE:</strong>
-                                        <br/>
-                                        <span t-field="doc.custom_note"/>
-                                    </td>
-                                </tr>
-                            </t>
+                                        <tr>
+                                            <td colspan="5"
+                                                style="border: 1px solid black;text-align: left;padding: 24px;font-size: 16px;">
+                                                <strong>NOTE:</strong>
+                                                <br/>
+                                                <span t-field="doc.custom_note"/>
+                                            </td>
+                                        </tr>
+                                    </t>
                                 </tbody>
                             </table>
                         </div>

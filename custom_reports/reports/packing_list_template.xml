@@ -17,8 +17,8 @@
                                 <td><span t-field="doc.name"/></td>
                             </tr>
                             <tr style="border: 2px solid black;">
-                                <td style="border: 2px solid black;"><strong>Date</strong></td>
-                                <td><span t-field="doc.scheduled_date" t-options="{'widget': 'date', 'format': 'EEEE, MMMM d, Y'}"/></td>
+                                <td style="border: 2px solid black;"><strong>INVOICE Date</strong></td>
+                                <td><span t-field="doc.invoice_date" t-options="{'widget': 'date', 'format': 'EEEE, MMMM d, Y'}"/></td>
                             </tr>
                             <tr style="border: 2px solid black;">
                                 <td style="border: 2px solid black;"><strong>Customer ID</strong></td>
@@ -34,9 +34,9 @@
                         <table class="table table-bordered" style="width: 100%; margin-bottom: 20px;">
                             <tr style="border: 2px solid black;">
                                 <td style="border: 2px solid black;width: 10%;"><strong>POL</strong></td>
-                                <td style="border: 2px solid black;width: 40%;"><span t-field="doc.sale_id.port_of_loading"/></td>
+                                <td style="border: 2px solid black;width: 40%;"><span t-field="doc.port_of_loading"/></td>
                                 <td style="border: 2px solid black;width: 10%;"><strong>POD</strong></td>
-                                <td style="border: 2px solid black;width: 40%;"><span t-field="doc.sale_id.port_of_discharge"/></td>
+                                <td style="border: 2px solid black;width: 40%;"><span t-field="doc.port_of_discharge"/></td>
                             </tr>
                         </table>
 
@@ -78,13 +78,13 @@
                                 <t t-set="total_bags" t-value="0"/>
                                 <t t-set="total_net_weight" t-value="0"/>
                                 <t t-set="total_gross_weight" t-value="0"/>
-                                <tr t-foreach="doc.move_ids_without_package" t-as="line">
+                                <tr t-foreach="doc.invoice_line_ids" t-as="line">
                                     <td style="border: 2px solid black;"><span t-esc="line_index + 1"/></td>
-                                    <td style="border: 2px solid black;"><span t-field="line.product_id.name"/></td>
-                                    <td style="border: 2px solid black;"><span t-field="line.picking_id.name"/></td>
+                                    <td style="border: 2px solid black;"><span t-field="line.name"/></td>
+                                    <td style="border: 2px solid black;"><span t-field="line.product_id.hs_code"/></td>
                                     <td style="border: 2px solid black;" class="text-center">
-                                        <span t-field="line.product_uom_qty"/>
-                                        <t t-set="total_bags" t-value="total_bags + line.product_uom_qty"/>
+                                        <span t-field="line.quantity"/>
+                                        <t t-set="total_bags" t-value="total_bags + line.quantity"/>
                                     </td>
                                     <td style="border: 2px solid black;" class="text-center">
                                         <span t-field="line.product_id.weight"/>

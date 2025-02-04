@@ -14,7 +14,7 @@
                         <table class="table table-bordered" style="width: 100%; margin-bottom: 20px;">
                             <tr style="border: 2px solid black;">
                                 <td style="border: 2px solid black;width: 50%;"><strong>INVOICE No.</strong></td>
-                                <td><span t-field="doc.origin"/></td>
+                                <td><span t-field="doc.name"/></td>
                             </tr>
                             <tr style="border: 2px solid black;">
                                 <td style="border: 2px solid black;"><strong>Date</strong></td>
@@ -33,17 +33,17 @@
                         <!-- Shipping Details -->
                         <table class="table table-bordered" style="width: 100%; margin-bottom: 20px;">
                             <tr style="border: 2px solid black;">
-                                <td style="border: 2px solid black;width: 33%;"><strong>POL</strong></td>
-                                <td><span t-field="doc.location_id.name"/></td>
-                                <td style="border: 2px solid black;width: 33%;"><strong>POD</strong></td>
-                                <td><span t-field="doc.location_dest_id.name"/></td>
+                                <td style="border: 2px solid black;width: 10%;"><strong>POL</strong></td>
+                                <td style="border: 2px solid black;width: 40%;"><span t-field="doc.sale_id.port_of_loading"/></td>
+                                <td style="border: 2px solid black;width: 10%;"><strong>POD</strong></td>
+                                <td style="border: 2px solid black;width: 40%;"><span t-field="doc.sale_id.port_of_discharge"/></td>
                             </tr>
                         </table>
 
                         <!-- Exporter & Consignee Details -->
                         <table class="table table-bordered" style="width: 100%; margin-bottom: 20px;">
                             <tr style="border: 2px solid black;">
-                                <td style=" border: 2px solid black;width: 50%;"><strong>EXPORTER/SHIPPER</strong></td>
+                                <td class="text-center" style=" border: 2px solid black;width: 50%;"><strong>EXPORTER/SHIPPER</strong></td>
                                 <td style="border: 2px solid black;">
                                     <div><strong>COMPANY NAME: </strong><span t-field="doc.company_id.name"/></div>
                                     <div><strong>Address: </strong><span t-field="doc.company_id.street"/>, <span t-field="doc.company_id.street2"/></div>
@@ -51,7 +51,7 @@
                                 </td>
                             </tr>
                             <tr style="border: 2px solid black;">
-                                <td style="border: 2px solid black;width: 50%;"><strong>CONSIGNEE</strong></td>
+                                <td class="text-center" style="border: 2px solid black;width: 50%;"><strong>CONSIGNEE</strong></td>
                                 <td style="border: 2px solid black;">
                                     <div><strong>COMPANY NAME: </strong><span t-field="doc.partner_id.name"/></div>
                                     <div><strong>ADDRESS: </strong><span t-field="doc.partner_id.street"/></div>
@@ -66,12 +66,12 @@
                         <table class="table table-bordered" style="width: 100%;">
                             <thead>
                                 <tr style="border: 2px solid black;">
-                                    <th style="border: 2px solid black;">#NO</th>
-                                    <th style="border: 2px solid black;">DESCRIPTION</th>
-                                    <th style="border: 2px solid black;">CONTAINER NO.</th>
-                                    <th style="border: 2px solid black;">QTY</th>
-                                    <th style="border: 2px solid black;">N.W.KG</th>
-                                    <th style="border: 2px solid black;">G.W.KG</th>
+                                    <th style="border: 2px solid black;"><strong>#NO</strong></th>
+                                    <th style="border: 2px solid black;"><strong>DESCRIPTION</strong></th>
+                                    <th style="border: 2px solid black;"><strong>CONTAINER NO.</strong></th>
+                                    <th style="border: 2px solid black;"><strong>QTY</strong></th>
+                                    <th style="border: 2px solid black;"><strong>N.W.KG</strong></th>
+                                    <th style="border: 2px solid black;"><strong>G.W.KG</strong></th>
                                 </tr>
                             </thead>
                             <tbody style="border: 2px solid black;">
@@ -101,7 +101,7 @@
                         <!-- Totals -->
                         <table class="table table-bordered" style="width: 100%;">
                             <tr style="border: 2px solid black;">
-                                <td style="border: 2px solid black;width: 50%;"><strong>Total PALLET</strong></td>
+                                <td style="border: 2px solid black;width: 50%;"><strong>Total</strong></td>
                                 <td><span t-esc="total_bags"/></td>
                             </tr>
                             <tr style="border: 2px solid black;">

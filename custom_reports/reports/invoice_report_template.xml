@@ -57,10 +57,10 @@
                                                 <span t-field="doc.name"/>
                                             </span>
                                             <br/>
-<!--                                            <span>-->
-<!--                                                <strong>Date:</strong>-->
-<!--                                                <span t-field="doc.invoice_date"/>-->
-<!--                                            </span>-->
+                                            <span>
+                                                <strong>Date:</strong>
+                                                <span t-field="doc.invoice_date"/>
+                                            </span>
                                         </div>
 
                                         <div style="border:1px solid;padding: 5px 20px;">
@@ -280,6 +280,16 @@
                                             </strong>
                                         </td>
                                     </tr>
+                                    <t t-if="doc.custom_note">
+                                <tr>
+                                    <td colspan="5"
+                                        style="border: 1px solid black;text-align: left;padding: 24px;font-size: 16px;">
+                                        <strong>NOTE:</strong>
+                                        <br/>
+                                        <span t-field="doc.custom_note"/>
+                                    </td>
+                                </tr>
+                            </t>
                                 </tbody>
                             </table>
                         </div>

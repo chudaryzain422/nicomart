@@ -23,6 +23,7 @@ class AccountMove(models.Model):
         string='Container Quantity',
         help='Specify the quantity of containers'
     )
+    custom_note = fields.Char(string='NOTE')
 
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'

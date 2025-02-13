@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="common_connector_library.QueueLineEptListView" t-inherit="web.ListView" t-inherit-mode="primary">
+        <xpath expr="//div[hasclass('o_content')]" position="inside">
+            <QueueLineEptDashBoard/>
+        </xpath>
+    </t>
+
+    <t t-name="common_connector_library.QueueLineEptDashBoard">
+        <div class="queue_line_dashboard">
+            <div class="o_dashboard_common">
+                <!-- Dashboard content will be added here -->
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="shipment_quotation">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                        <h5>
+                            Quotation
+                        </h5>
+                        <h1>
+                            <span t-field="o.name"/>
+                        </h1>
+                        <hr style="border: 1px solid;"/>
+                        <table width="100%" style="margin-top:25px" class="table table-bordered">
+                            <tr>
+                                <td>
+                                    <strong>Shipper</strong>
+                                    <br/>
+                                    <span t-field="o.shipper_id.name"/>
+                                </td>
+                                <td>
+                                    <strong>Consignee</strong>
+                                    <br/>
+                                    <span t-field="o.consignee_id.name"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table width="100%" style="margin-top:25px" class="table table-bordered">
+                            <tr>
+                                <td>
+                                    <t t-if="o.address_to=='location_address'">
+                                        <span>
+                                            Source Location :
+                                            <strong>
+                                                <span t-field="o.source_location_id"/>
+                                            </strong>
+                                        </span>
+                                    </t>
+                                    <t t-else="">
+                                        From
+                                    </t>
+                                    <br/>
+                                    <span t-esc="o.s_street"/>
+                                    <br/>
+                                    <span t-esc="o.s_street2"/>
+                                    <br/>
+                                    <span t-esc="o.s_city"/>
+                                    <span t-esc="o.s_zip"/>
+                                    <br/>
+                                    <span t-esc="o.s_state_id.name"/>
+                                    <span t-esc="o.s_country_id.name"/>
+                                    <br/>
+                                </td>
+                                <td>
+                                    <t t-if="o.address_to=='location_address'">
+                                        <span>
+                                            Destination Location :
+
+                                            <strong>
+                                                <span t-field="o.destination_location_id"/>
+                                            </strong>
+                                        </span>
+                                    </t>
+                                    <t t-else="">
+                                        To
+                                    </t>
+                                    <br/>
+                                    <span t-esc="o.consignee_id.name"/>
+                                    <br/>
+                                    <span t-esc="o.consignee_id.street"/>
+                                    <br/>
+                                    <span t-esc="o.consignee_id.city"/>
+                                    <span t-esc="o.s_zip"/>
+                                    <br/>
+                                    <span t-esc="o.consignee_id.state_id.name"/>
+                                    <span t-esc="o.consignee_id.country_id.name"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>
+                                    <strong>
+                                        Type
+                                    </strong>
+                                    <br/>
+                                    <span t-field="o.operation"/>
+                                </td>
+                                <td>
+                                    <strong>
+                                        Date
+                                    </strong>
+                                    <br/>
+                                    <span t-field="o.date"/>
+                                </td>
+                                <td>
+                                    <strong>
+                                        Address
+                                    </strong>
+                                    <br/>
+                                    <span t-field="o.address_to"/>
+                                </td>
+                                <td>
+                                    <strong>
+                                        Transport Via
+                                    </strong>
+                                    <br/>
+                                    <span t-field="o.transport"/>
+                                    <t t-if="o.transport=='land'">
+                                        <t t-if="o.inland_shipment_type=='ftl'">
+                                            (FTL)
+                                        </t>
+                                        <t t-else="">
+                                            (LTL)
+                                        </t>
+                                    </t>
+                                    <t t-if="o.transport=='ocean'">
+                                        <t t-if="o.ocean_shipment_type=='fcl'">
+                                            (FCL)
+                                        </t>
+                                        <t t-else="">
+                                            (LCL)
+                                        </t>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm">
+                            <thead>
+                                <tr class="table-active">
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Qty.</th>
+                                    <th scope="col" style="text-align:right;">Price</th>
+                                    <th scope="col">Currency</th>
+                                    <th scope="col" style="text-align:right;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.order_line_ids" t-as="p">
+                                    <tr>
+                                        <th scope="row">
+                                            <span t-field="p.name"/>
+                                        </th>
+                                        <td>
+                                            <span t-field="p.qty"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-field="p.sale"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="p.currency_id"/>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span t-field="p.total_amount"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th scope="row" style="text-align:right;border-top: 1px solid;" colspan="5">
+                                        <span t-field="o.total_text"/>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <t t-if="o.notes">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>
+                                        <strong>Notes</strong>
+                                        <br/>
+                                        <span t-field="o.notes"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </t>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+        <record id="freight_quot_report_id" model="ir.actions.report">
+            <field name="name">Freight Quotation</field>
+            <field name="model">shipment.quotation</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">tk_freight.shipment_quotation</field>
+            <field name="report_file">tk_freight.shipment_quotation</field>
+            <field name="binding_model_id" ref="tk_freight.model_shipment_quotation"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">'%s' %(object.name)</field>
+        </record>
+    </data>
+</odoo>

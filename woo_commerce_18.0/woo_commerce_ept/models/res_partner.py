@@ -123,7 +123,6 @@ class ResPartner(models.Model):
                 _('Core of Process Customer is deleted, please upgrade Woo Commerce module'))
         if not process_customer_cron.active:
             process_customer_cron.write({'active': True,
-                                         'numbercall': 10,
                                          'nextcall': datetime.now() + timedelta(minutes=2)})
 
         return queues

@@ -126,7 +126,6 @@ class WooExportStockQueueEpt(models.Model):
                         _('Core of Process Export Stock is deleted, please upgrade Woo Commerce module'))
                 if not process_export_stock_cron.active:
                     process_export_stock_cron.write({'active': True,
-                                                     'numbercall': 10,
                                                      'nextcall': datetime.now() + timedelta(minutes=2)})
         return queues_list
 

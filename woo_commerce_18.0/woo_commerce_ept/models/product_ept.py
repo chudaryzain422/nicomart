@@ -775,7 +775,6 @@ class WooProductTemplateEpt(models.Model):
                     _('Core of Process Product is deleted, please upgrade Woo Commerce module'))
             if not process_product_cron.active:
                 process_product_cron.write({'active': True,
-                                            'numbercall': 10,
                                             'nextcall': datetime.now() + timedelta(minutes=2)})
         return product_queue_ids
 

@@ -123,7 +123,6 @@ class SaleOrder(models.Model):
                         _('Core of Process Order is deleted, please upgrade Woo Commerce module'))
                 if not process_order_cron.active:
                     process_order_cron.write({'active': True,
-                                              'numbercall': 10,
                                               'nextcall': datetime.now() + timedelta(minutes=2)})
 
         return order_queues_list

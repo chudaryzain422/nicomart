@@ -49,6 +49,7 @@ WooCollapseButtonController.template = "woo_commerce_ept.WooCollapseButtonContro
 const WooOnBoardingToggleKanbanView = {
     ...KanbanView,
     Controller: WooCollapseButtonController,
+    type: "kanban",
 };
 
 registry.category("views").add("wooOnBoardingToggle", WooOnBoardingToggleKanbanView);

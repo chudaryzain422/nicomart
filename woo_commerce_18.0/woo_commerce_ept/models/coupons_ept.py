@@ -322,7 +322,6 @@ class WooCouponEpt(models.Model):
                         _('Core of Process Coupon is deleted, please upgrade Woo Commerce module'))
                 if not process_coupon_cron.active:
                     process_coupon_cron.write({'active': True,
-                                               'numbercall': 10,
                                                'nextcall': datetime.now() + timedelta(minutes=2)})
         _logger.info("Import coupon process completed.")
         return coupon_queues

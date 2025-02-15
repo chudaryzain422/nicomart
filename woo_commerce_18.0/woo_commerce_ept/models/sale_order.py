@@ -405,7 +405,7 @@ class SaleOrder(models.Model):
             "partner_shipping_id": shipping_partner.ids[0],
             "woo_status": order_data.get("status"),
             "client_order_ref": woo_order_number,
-            "analytic_account_id": woo_instance.woo_analytic_account_id.id if woo_instance.woo_analytic_account_id else False,
+            # "analytic_account_id": woo_instance.woo_analytic_account_id.id if woo_instance.woo_analytic_account_id else False,
         }
         if self.env["ir.config_parameter"].sudo().get_param("woo_commerce_ept.use_default_terms_and_condition_of_odoo"):
             vals = self.prepare_order_note_with_customer_note(vals)

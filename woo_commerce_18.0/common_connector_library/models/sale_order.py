@@ -146,7 +146,7 @@ class SaleOrder(models.Model):
         The invoice will not create if order date as lower to fiscalyear date.
         :return: True/False
         """
-        fiscalyear_lock_date = self.company_id._get_user_fiscal_lock_date()
+        fiscalyear_lock_date = self.company_id._get_user_fiscal_lock_date(self.journal_id)
         if self.date_order.date() <= fiscalyear_lock_date:
             message = "You cannot create invoice for order (%s) " \
                       "prior to and inclusive of the lock date %s. " \

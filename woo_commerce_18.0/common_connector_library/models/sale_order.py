@@ -99,7 +99,7 @@ class SaleOrder(models.Model):
             if work_flow_process_record.validate_order:
                 order.validate_order_ept()
             order_lines = order.mapped('order_line').filtered(lambda l: l.product_id.invoice_policy == 'order')
-            if not order_lines.filtered(lambda l: l.product_id.type == 'product') and len(
+            if not order_lines.filtered(lambda l: l.product_id.type == 'consu') and len(
                     order.order_line) != len(order_lines.filtered(lambda l: l.product_id.type in ['service', 'consu'])):
                 continue
             order.validate_and_paid_invoices_ept(work_flow_process_record)

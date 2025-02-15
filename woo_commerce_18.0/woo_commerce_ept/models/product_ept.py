@@ -283,7 +283,7 @@ class WooProductTemplateEpt(models.Model):
         """
         variations = []
         for variant in woo_template.woo_product_ids.filtered(lambda x:
-                                                             x.product_id.type == 'product' and
+                                                             x.product_id.type == 'consu' and
                                                              x.variant_id and x.woo_is_manage_stock):
             if variant.product_id.id in self._context.get('updated_products_in_inventory'):
                 quantity = product_stock.get(variant.product_id.id)
@@ -1050,7 +1050,7 @@ class WooProductTemplateEpt(models.Model):
         attrib_line_vals = self.prepare_woo_attribute_line_vals(product_template_dict.get('attributes'))
 
         if attrib_line_vals:
-            product_template_values = {'name': template_title, 'type': 'product',
+            product_template_values = {'name': template_title, 'type': 'consu',
                                        'attribute_line_ids': attrib_line_vals}
             if ir_config_parameter_obj.sudo().get_param("woo_commerce_ept.set_sales_description"):
                 product_template_values.update({"description_sale": product_template_dict.get("description", ""),

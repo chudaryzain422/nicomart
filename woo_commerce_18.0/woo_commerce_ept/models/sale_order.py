@@ -935,7 +935,7 @@ class SaleOrder(models.Model):
                         sale_order.auto_workflow_process_id.id,
                         [sale_order.id])
                 service_product = [product for product in sale_order.order_line.product_id if
-                                   product.detailed_type == 'service']
+                                   product.type == 'service']
                 sale_order.is_service_woo_order = bool(service_product)
 
                 if meta_mapping_ids and meta_mapping_ids.filtered(

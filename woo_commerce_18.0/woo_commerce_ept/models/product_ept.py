@@ -283,7 +283,7 @@ class WooProductTemplateEpt(models.Model):
         """
         variations = []
         for variant in woo_template.woo_product_ids.filtered(lambda x:
-                                                             x.product_id.detailed_type == 'product' and
+                                                             x.product_id.type == 'product' and
                                                              x.variant_id and x.woo_is_manage_stock):
             if variant.product_id.id in self._context.get('updated_products_in_inventory'):
                 quantity = product_stock.get(variant.product_id.id)
@@ -1050,7 +1050,7 @@ class WooProductTemplateEpt(models.Model):
         attrib_line_vals = self.prepare_woo_attribute_line_vals(product_template_dict.get('attributes'))
 
         if attrib_line_vals:
-            product_template_values = {'name': template_title, 'detailed_type': 'product',
+            product_template_values = {'name': template_title, 'type': 'product',
                                        'attribute_line_ids': attrib_line_vals}
             if ir_config_parameter_obj.sudo().get_param("woo_commerce_ept.set_sales_description"):
                 product_template_values.update({"description_sale": product_template_dict.get("description", ""),
@@ -1149,7 +1149,7 @@ class WooProductTemplateEpt(models.Model):
                     available_odoo_products.update({variation["id"]: odoo_product})
 
         if all(virtual_product_list):
-            product_template.write({'detailed_type': 'service'})
+            product_template.write({'type': 'service'})
         if not available_odoo_products:
             product_template.unlink()
         return available_odoo_products
@@ -1724,7 +1724,7 @@ class WooProductTemplateEpt(models.Model):
                 odoo_product.default_code = variant["sku"]
             return odoo_product
 
-        template_vals = {"name": template_title, "detailed_type": "product", "default_code": variant["sku"]}
+        template_vals = {"name": template_title, "type": "product", "default_code": variant["sku"]}
         if self.env["ir.config_parameter"].sudo().get_param("woo_commerce_ept.set_sales_description"):
             template_vals.update({"description_sale": variant.get("description", "")})
 
@@ -1807,7 +1807,7 @@ class WooProductTemplateEpt(models.Model):
 
                     woo_template_vals = self.prepare_woo_template_vals(template_info, odoo_template.id,
                                                                        sync_category_and_tags, woo_instance)
-                    if odoo_template.detailed_type == 'service':
+                    if odoo_template.type == 'service':
                         woo_template_vals.update({'is_virtual_product': True})
                     woo_template = self.create(woo_template_vals)
                 elif not template_updated:
@@ -1940,14 +1940,14 @@ class WooProductTemplateEpt(models.Model):
                     woo_weight = float(product_response.get("weight") or "0.0")
                     weight = self.convert_weight_by_uom(woo_weight, woo_instance, import_process=True)
                     template_vals = {
-                        "name": template_title, "detailed_type": "product", "default_code": product_response["sku"],
+                        "name": template_title, "type": "product", "default_code": product_response["sku"],
                         "weight": weight
                     }
                     if self.env["ir.config_parameter"].sudo().get_param("woo_commerce_ept.set_sales_description"):
                         template_vals.update({"description_sale": product_response.get("description", ""),
                                               "description": product_response.get("short_description", "")})
                     if product_response["virtual"]:
-                        template_vals.update({"detailed_type": "service"})
+                        template_vals.update({"type": "service"})
                     if woo_instance.woo_instance_product_categ_id:
                         template_vals.update({"categ_id": woo_instance.woo_instance_product_categ_id.id})
                     odoo_template = self.env["product.template"].create(template_vals)
@@ -1968,9 +1968,9 @@ class WooProductTemplateEpt(models.Model):
 
                 woo_template_vals = self.prepare_woo_template_vals(template_info, odoo_template.id,
                                                                    sync_category_and_tags, woo_instance)
-                if product_response["virtual"] and odoo_template.detailed_type == 'service':
+                if product_response["virtual"] and odoo_template.type == 'service':
                     woo_template_vals.update({"is_virtual_product": True})
-                    odoo_template.write({"detailed_type": "service"})
+                    odoo_template.write({"type": "service"})
                 woo_template = self.create(woo_template_vals)
 
             variant_info.update({"product_id": odoo_product.id, "woo_template_id": woo_template.id})

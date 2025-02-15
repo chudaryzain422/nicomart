@@ -26,7 +26,7 @@ class StockQuant(models.Model):
                 quant_list += self.with_context(inventory_mode=True).create(val)
             if auto_apply and quant_list:
                 quant_list.filtered(
-                    lambda x: x.product_id.tracking not in ['lot', 'serial'] and x.product_id.detailed_type not in [
+                    lambda x: x.product_id.tracking not in ['lot', 'serial'] and x.product_id.type not in [
                         'service', 'consu']).with_context(
                     inventory_name=name).action_apply_inventory()
         return quant_list

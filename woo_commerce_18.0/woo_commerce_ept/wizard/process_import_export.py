@@ -395,7 +395,7 @@ class WooProcessImportExport(models.TransientModel):
         product = woo_products.filtered(lambda x: int(x.variant_id) == res_product.get('id'))
         if product:
             if res_product.get('manage_stock') and res_product.get('stock_quantity') and \
-                    product.product_id.detailed_type == 'product':
+                    product.product_id.type == 'product':
                 if product.product_id.id not in duplicate_woo_product:
                     _logger.info("Adding qty for inventory adjustment of Woo product: %s for "
                                  "Variant ID: %s", product.name, product.variant_id)

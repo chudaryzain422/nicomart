@@ -23,7 +23,7 @@ class ProductImageEpt(models.Model):
         Migrated by Maulik Barad on Date 07-Oct-2021.
         """
         results = super(ProductImageEpt, self).create(vals_list)
-        if self.user_has_groups('woo_commerce_ept.group_woo_ept'):
+        if self.env.user.has_groups('woo_commerce_ept.group_woo_ept'):
             value_list = results.read(["id", "image", "product_id", "template_id"])
             for vals in value_list:
                 woo_product_product_obj = self.env["woo.product.product.ept"]
@@ -69,7 +69,7 @@ class ProductImageEpt(models.Model):
         @author: Maulik Barad on Date 11-Dec-2019.
         """
         result = super(ProductImageEpt, self).write(vals)
-        if self.user_has_groups('woo_commerce_ept.group_woo_ept'):
+        if self.env.user.has_groups('woo_commerce_ept.group_woo_ept'):
             woo_product_images = self.env["woo.product.image.ept"]
             woo_product_product_obj = self.env["woo.product.product.ept"]
             for record in self:
